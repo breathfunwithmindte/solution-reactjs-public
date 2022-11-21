@@ -1,0 +1,101 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--clr1);
+}
+
+header {
+  height: 69px;
+  border-bottom: 4px solid var(--pr1) !important;
+  z-index: 14;
+  position: sticky;
+  top: 0px;
+}
+
+header h1 {
+  font-size: 1.4rem;
+}
+
+
+.Template-Three-Sections {
+  
+}
+
+.accordion-button:not(.collapsed) {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.014);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+.accordion-button {
+  color: #ffffff;
+  background-color: var(--nav_bg0);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.nav-elm-now-perfectevolution {
+  padding: 0.97rem 0.69rem 0.97rem 2.5rem;
+  cursor: pointer;
+}
+.nav-elm-now-perfectevolution:hover {
+  background: rgba(0, 0, 0, 0.14)
+}
+
+
+.sol-opened-menu {
+  position: absolute;
+  top: 69px;
+  left: 0px;
+  width: calc(184px + 6.9vw);
+  max-width: 492px;
+  background: var(--bg0);
+  overflow-y: auto;
+  max-height: 69vh;
+  box-shadow: 0px 1.4px 6.9px 0.014px rgba(0, 0, 0, 0.14);
+  animation: 0.69s sol-open-menu ease;
+}
+
+.sol-opened-menu-item {  }
+.sol-opened-menu-item:hover { background: var(--h) }
+
+@keyframes sol-open-menu {
+  0% { filter: opacity(0); } 100% { filter: opacity(1); }
+}
+
+.avatar-img {
+  border-radius: 100%;
+  margin:  0.69rem;
+}
+
+.chartcard {
+  min-height: 169px;
+  width: 20% !important;
+  max-width: 492px !important;
+  min-width: 197px !important;
+}
+@media(max-width: 1260px) { .chartcard { width: 97% !important; max-width: 693px !important; } }
+
+.sol-opened-menu-header  {
+  position: absolute;
+  top: 56px;
+  right: 2.3vw;
+  color: var(--clr);
+  height: 46vh;
+  width: calc(197px + 6.9vw);
+  max-width: 492px;
+  background: var(--bg0);
+  overflow-y: auto;
+  max-height: 69vh;
+  box-shadow: 0px 1.4px 6.9px 0.014px rgba(0, 0, 0, 0.34);
+  animation: 0.69s sol-open-menu ease;
+}
+
+.sol-opened-menu-header .notification-wrapper {
+  width: 100%;
+  height: calc(46vh - 100px);
+  overflow-y: auto;
+}
+
+.lalala {
+  padding: 3rem !important;
+}

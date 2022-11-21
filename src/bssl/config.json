@@ -1,0 +1,11 @@
+{
+  "mode": "dev",
+  
+  "dev-domain": "http://localhost:5000",
+  "dev-domain-api": "http://localhost:5000/api/v1",
+
+  "prod-domain": "https://softmedica.empedus.services/",
+  "prod-domain-api": "https://softmedica.empedus.services//api/v1"
+
+
+}

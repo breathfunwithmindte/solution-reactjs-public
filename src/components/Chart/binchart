@@ -1,0 +1,282 @@
+import React, { useMemo, useState } from "react";
+import { Form } from "react-bootstrap";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import useMain from "../../bssl/Context";
+import Sol_areachart from "./charts/Sol_areachart";
+import Sol_barchart from "./charts/Sol_barchart";
+import Sol_cardchart from "./charts/Sol_cardchart";
+import Sol_content from "./charts/Sol_content";
+import Sol_linechart from "./charts/Sol_linechart";
+import Sol_piechart from "./charts/Sol_piechart";
+import Sol_scatterchart from "./charts/Sol_scatterchart";
+
+const data1 = [
+  {
+    name: "Page A",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Page B",
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Page C",
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Page D",
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "Page E",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: "Page F",
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+];
+
+const data2 = [
+  {
+    name: "Page A",
+    uv: 2000,
+    pv: 4400,
+    amt: 3400,
+  },
+  {
+    name: "Page B",
+    uv: 7000,
+    pv: 5398,
+    amt: 3210,
+  },
+  {
+    name: "Page C",
+    uv: 1000,
+    pv: 4800,
+    amt: 8290,
+  },
+  {
+    name: "Page D",
+    uv: 9780,
+    pv: 5908,
+    amt: 400,
+  },
+  {
+    name: "Page E",
+    uv: 7890,
+    pv: 9800,
+    amt: 7181,
+  },
+  {
+    name: "Page F",
+    uv: 1390,
+    pv: 8800,
+    amt: 9500,
+  },
+  {
+    name: "Page G",
+    uv: 14490,
+    pv: 23300,
+    amt: 11100,
+  },
+];
+
+const GenericChart = ({}) => {
+  const {state} = useMain()
+  const [chartstate, setChartstate] = useState({});
+  const [chartdatastate, setChartdatastate] = useState({
+    users: data1,
+    posts: data2,
+    specialdata: {
+      pedding: 202,
+      open: 402,
+      closed: 800,
+      closed_with_error: 5
+    }
+  });
+
+  const charts_list = [
+    {
+      type: "cardchart",
+      data_properties: "specialdata",
+      items: [
+        "hourglass_top--{{pedding}} requests --#212121 -- new request not approved yet",
+        "work--{{open}} requests --orange -- open request",
+        "done--{{closed}} requests --green -- request completed",
+        "close--{{closed_with_error}} requests --red -- closed with error"
+      ]
+    },
+    {
+      type: "content",
+      items: [
+        "title -- Some content here {{ users.0.pv }}",
+        "text -- some text ehre"
+      ]
+    },
+    {
+      type: "linechart",
+      data_properties: "users",
+      width: "46%",
+      height: 300,
+      legend: true,
+      tooltip: true,
+      cartesiangrid: true,
+      items: ["users--pv--red", "users2--uv--blue"],
+    },
+    {
+      type: "barchart",
+      data_properties: "users",
+      width: "46%",
+      height: 300,
+      legend: true,
+      tooltip: true,
+      cartesiangrid: true,
+      items: ["users--pv--red", "users2--uv--blue"],
+    },
+    {
+      type: "areachart",
+      data_properties: "users",
+      width: "100%",
+      height: 300,
+      legend: true,
+      tooltip: true,
+      cartesiangrid: true,
+      items: ["users--pv--red", "users2--uv--blue"],
+    },
+    {
+      type: "scatterchart",
+      data_properties: "users::somename::red,posts::somename1::blue",
+      width: "100%",
+      height: "400px",
+      legend: true,
+      tooltip: true,
+      cartesiangrid: true,
+      items: ["one--uv--.--cm", "two--pv--.--cm"],
+    },
+    {
+      type: "piechart",
+      data_properties: "users,posts,users",
+      width: "100%",
+      height: "400px",
+      legend: true,
+      tooltip: true,
+      cartesiangrid: true,
+      items: ["name--uv--lightgreen--cm", "name--pv--lightblue--cm", "name--amt--orange--cm"],
+    },
+  ];
+
+  return (
+    <div
+      className="w-100 pb0 d-flex f-wrap j-cont-between"
+      style={{
+        position: "relative",
+        height: "fit-content",
+        marginBottom: 256,
+      }}
+    >
+      <section className="p0 w-100 bg0 d-flex j-cont-between al-items-center"
+        style={{borderBottom: "1px solid var(--h)", position: "sticky", top: 0, zIndex: 14}}
+      >
+        <h3 className="m2">Dashboard By group, hello, {state.user.username}</h3>
+        <Form  className="m2">
+          <Form.Select>
+            <option>my group 1</option>
+            <option>my group 2</option>
+          </Form.Select>
+        </Form>
+      </section>
+      {charts_list.map((chart, index) => {
+        switch (chart.type) {
+          case "linechart":
+            return (
+              <Sol_linechart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            );
+          case "barchart":
+            return (
+              <Sol_barchart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            );
+          case "areachart":
+            return (
+              <Sol_areachart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            );
+          case "scatterchart":
+            return (
+              <Sol_scatterchart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            );
+          case "piechart":
+            return (
+              <Sol_piechart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            )
+          case "cardchart":
+            return (
+              <Sol_cardchart
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            )
+          case "content":
+            return (
+              <Sol_content
+                key={index}
+                data={chartdatastate}
+                chartprops={chart}
+              />
+            )
+          default:
+            break;
+        }
+      })}
+    </div>
+  );
+};
+
+export default GenericChart;

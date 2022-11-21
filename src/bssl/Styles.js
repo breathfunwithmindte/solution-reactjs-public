@@ -1,0 +1,36 @@
+export const LightStyle = {
+  mode: "LIGHT",
+  css: {
+    bg0: "#FFFFFF",
+    bg1: "#F9F9F9",
+    bg2: "#EDF1FF",
+    clr: "#242526",
+    clr1: "#212121",
+    clr2: "#919191",
+    h: "rgba(0,0,0,0.14)",
+    lh: "rgba(0,0,0,0.054)",
+    p: "1.4rem",
+    p1: "0.69rem",
+    p2: "0.24rem",
+    pp: "6.9rem", // primary padding
+    m: "1.4rem",
+    m1: "0.69rem",
+    m2: "0.14rem",
+    borderr: "1.4rem",
+    borderr1: "0.69rem",
+    borderr2: "2.5px",
+    border: "0.14rem solid rgba(0,0,0,0.14)",
+    border1: "0.14rem solid #45494E",
+    nav_bg0: "#242526",
+    nav_bg1: "#242526",
+    pr: "#0032e6",
+    pr1: "#002ccc",
+    pr2: "#001666",
+    prh: "#0a493a9c",
+    pclr: "#FFFFFF",
+    shadow_len: "0.24rem",
+    ppadding: "23vw",
+    wpg: "calc(100% - var(--whd))",
+    whd: "224px"
+  }
+}
